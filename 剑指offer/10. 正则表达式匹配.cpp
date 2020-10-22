@@ -1,3 +1,5 @@
+// 由于 if(p[0] == '*') return false; 排除了星号前面没有其他字符  所以几j==1时dp[i][j - 2]不会发生
+
 class Solution {
 public:
     bool isMatch(string s, string p) {
