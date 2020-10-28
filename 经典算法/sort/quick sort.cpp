@@ -1,3 +1,4 @@
+//j是小于等于pivot的最大元素的下标
 class Solution {
 public:
 	vector<int> sortArray(vector<int>& nums) {
