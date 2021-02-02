@@ -1,0 +1,39 @@
+//必须用双向队列
+
+class MaxQueue {
+public:
+    queue<int> queue;
+    deque<int> help;
+
+    MaxQueue() {
+
+    }
+    
+    int max_value() {
+        return help.size()? help.front():-1;
+    }
+    
+    void push_back(int value) {
+        queue.push(value);
+        while(help.size()&& help.back()<value){
+            help.pop_back();
+        }
+        help.push_back(value);
+    }
+    
+    int pop_front() {
+         if(!queue.size()) return -1;
+         int topValue = queue.front();
+         queue.pop();
+         if(help.size()&& help.front()==topValue) help.pop_front();
+         return topValue;
+    }
+};
+
+/**
+ * Your MaxQueue object will be instantiated and called as such:
+ * MaxQueue* obj = new MaxQueue();
+ * int param_1 = obj->max_value();
+ * obj->push_back(value);
+ * int param_3 = obj->pop_front();
+ */
