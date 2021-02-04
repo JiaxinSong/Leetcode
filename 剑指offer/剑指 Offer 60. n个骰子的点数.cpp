@@ -6,8 +6,8 @@
 
 class Solution {
 public:
-    vector<double> twoSum(int n) {
-        int dp[12][67];
+    vector<double> dicesProbability(int n) {
+        int dp[12][67];  //11个骰子 最大和为66
         memset(dp, 0, sizeof(dp));
         for (int i = 1; i <= 6; i ++) {
             dp[1][i] = 1;
@@ -15,6 +15,7 @@ public:
         for (int i = 2; i <= n; i ++) {
             for (int j = i; j <= 6*i; j ++) {
                 for (int cur = 1; cur <= 6; cur ++) {
+                    //限定范围 
                     if (j - cur < i-1) {
                         break;
                     }
@@ -31,8 +32,6 @@ public:
         return ret;
     }
 };
-
-
 
 
 
