@@ -1,4 +1,4 @@
-//方法二更快
+
 
 //全排列
 class Solution {
@@ -51,39 +51,6 @@ public:
             if(!isUnwantedZero) temp += s[i];
         }
         output.push_back(stoi(temp));
-    }
-};
-
-//方法二
-
-class Solution {
-public:
-    vector<int> printNumbers(int n) {
-        int m = pow(10, n) - 1;
-        vector<int> res(m);
-        for(int i = 0; i < m; i++){
-            res[i] = i + 1;
-        }
-        return res;
-    }
-    void printNumbers2(int n) {
-        string s = "0";
-        while(s.size() <= n){
-            cout << s << endl;
-            s = add(s);
-        }
-    }
-    string& add(string &s){
-        int i = s.size()-1;
-        while(i >= 0 && s[i] == '9'){
-            s[i--] = '0';
-        }
-        if(i < 0){
-            s = "1" + s;
-        }else{
-            s[i] = s[i] + 1;
-        }
-        return s;
     }
 };
 
