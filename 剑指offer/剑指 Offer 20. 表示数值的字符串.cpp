@@ -7,9 +7,8 @@ public:
         if(s.length() == 0) return false;
         bool isDot = false, isE = false, isNumber = false;
         for(int i=0; i<s.length(); ++i)
-        {
-            if(s[i] == ' ') return false;
-            else if(s[i] >= '0' && s[i] <= '9') 
+        {          
+            if(s[i] >= '0' && s[i] <= '9') 
                 isNumber = true;
             else if(s[i] == 'e' || s[i] == 'E')
             {
