@@ -35,7 +35,7 @@ public:
         while(n/i!=0){
             long high=n/(10*i);
             long cur=(n/i)%10;
-            long low=n-(n/i)*i;
+            long low=n%i;
             if(cur==0){
                 count+=high*i;
             }else if(cur==1){
