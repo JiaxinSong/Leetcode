@@ -1,12 +1,3 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
 class Codec {
 public:
 
@@ -64,13 +55,9 @@ public:
         int j=1;
         for(int i=0;j<vec.size();i++){
             if(vec[i]==NULL) continue;
-            if(j<vec.size()) vec[i]->left=vec[j++];
-            if(j<vec.size()) vec[i]->right=vec[j++];
+            vec[i]->left=vec[j++];
+            vec[i]->right=vec[j++];
         }
         return vec[0];
     }
 };
-
-// Your Codec object will be instantiated and called as such:
-// Codec codec;
-// codec.deserialize(codec.serialize(root));
