@@ -1,3 +1,5 @@
+//左取i个 右取j个
+
 class Solution {
 public:
     int maximumScore(vector<int>& nums, vector<int>& multipliers) {
