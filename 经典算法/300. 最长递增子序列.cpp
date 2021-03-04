@@ -21,7 +21,7 @@ public:
 
 // O nlogn
 
-//我们维护一个数组 d[i]d[i] ，表示长度为 ii 的最长上升子序列的末尾元素的最小值
+//我们维护一个数组 d[i] ，表示长度为 i 的最长上升子序列的末尾元素的最小值
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
