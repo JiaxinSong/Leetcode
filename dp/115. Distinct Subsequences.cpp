@@ -10,10 +10,8 @@ public:
             dp[i][n] = 1;
         }
         for (int i = m - 1; i >= 0; i--) {
-            char sChar = s.at(i);
             for (int j = n - 1; j >= 0; j--) {
-                char tChar = t.at(j);
-                if (sChar == tChar) {
+                if (s[i] == t[j]) {
                     dp[i][j] = dp[i + 1][j + 1] + dp[i + 1][j];
                 } else {
                     dp[i][j] = dp[i + 1][j];
