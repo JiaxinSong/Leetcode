@@ -8,6 +8,8 @@
  * };
  */
 
+
+ //stringstream 可以将接受的int变成string再>>给int
 #include <sstream>
 class Codec {
 public:
