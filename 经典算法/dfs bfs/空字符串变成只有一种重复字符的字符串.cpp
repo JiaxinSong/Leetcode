@@ -6,29 +6,20 @@
 #include<bits/stdc++.h>
 
 using namespace std;
+unsigned long long n, a, b;
+
+long long dfs(unsigned long long n){
+    if(n==0) return 0;
+    if(n==1) return  b;
+
+    unsigned long long res =  min( min(dfs(n/2) + a + b*(n%2), b*n), dfs(n/2) + b*(n-n/2));
+    return min(res, dfs((n+1)/2) + a + b*(n%2));
+}
 
 int main(){
-    int n,m;
-    cin>>n>>m;
-    vector<int> a(n+1, 0);
-    for(int i=0; i<n; i++){
-        cin>>a[i+1];
-        a[i+1] += a[i];
-    }
-    deque<int> que;
-    int ans = 0;
-    for(int i=0; i<=n; i++){
-        while(!que.empty() && que.front()+m<i ){
-            que.pop_front();
-        }
-        if(!que.empty())
-            ans = max(ans, a[i] - a[que.front()]);
-        while(!que.empty() && a[que.back()] >= a[i]){
-            que.pop_back();
 
-        }
-        que.push_back(i);
-    }
-    cout<<ans<<endl;
+//    freopen("in.dat", "r", stdin);
+    cin>>n>>b>>a;
+    cout<<dfs(n)<<endl;
     return 0;
 }
