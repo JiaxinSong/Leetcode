@@ -23,10 +23,11 @@ class Solution {
 class Solution {
     public String replaceSpace(String s) {
         StringBuilder res = new StringBuilder();
-        for(Character c : s.toCharArray())
+        int size=s.length();
+        for(int i=0;i<size;i++ )
         {
-            if(c == ' ') res.append("%20");
-            else res.append(c);
+            if(s.charAt(i) == ' ') res.append("%20");
+            else res.append(s.charAt(i));
         }
         return res.toString();
     }
