@@ -1,0 +1,118 @@
+//参考718       确定长度 当所有数组都满足时通过
+class Solution {
+    
+    //mod 
+    long mod = (long)(Math.pow(10,11) + 3);
+    
+    long p = 100003;
+    
+     long p_i[];
+    
+    public int longestCommonSubpath(int n, int[][] paths) {
+        
+        //min length will be 1 
+        int min = 1;
+        
+        //max length will be the (path of min length) 
+    
+        int max = Integer.MAX_VALUE;
+        
+        for(int path[] : paths){
+            max = Math.min(max,path.length);
+        }
+        
+        p_i = new long[max + 1];
+        
+        p_i[0] = 1;
+        
+        for(int i=1;i<=max;i++){
+            //mod multiplication
+            p_i[i] = mulmod(p_i[i-1],p,mod);
+        }
+            
+        int ans = 0;
+        
+        int left =1,right=max+1;
+        while(left <right){
+            
+            int mid = (left + right) / 2;
+            
+            if(solve(mid,paths)){
+                //if this length satisfies 
+                //we are moving to right  
+                //checking length greater than this
+               
+                left=mid+1;
+            }else{
+                //else smaller
+                right=mid;
+            }
+            
+        }
+        
+        return left-1;
+        
+    }
+    
+    public boolean solve(int len,int paths[][]){
+        
+        Map<Long,Long> map = new HashMap<>();
+
+        
+        for(int path[] : paths){
+            
+            long hash = 0l;
+
+            Set<Long> set = new HashSet<>();
+
+            for(int i=0;i<len;i++){
+                hash = (hash + mulmod(p_i[len-i],(path[i]+1),mod)) % mod;
+            }
+            
+            set.add(hash);
+            
+            for(int i=len;i<path.length;i++){
+                long new_hash = (hash - mulmod(p_i[len],path[i-len]+1,mod) + mod)%mod;
+                new_hash = mulmod(new_hash,p,mod);
+                new_hash = (new_hash + mulmod(p_i[1],path[i]+1,mod))%mod;
+                hash = new_hash;
+                set.add(new_hash);
+            }
+            
+            // now for all the hash values in the set we will update the count 
+            // in the map
+            for(long hsh : set){
+                map.put(hsh,map.getOrDefault(hsh,0l) + 1l);
+                if(map.get(hsh) == paths.length){return true;}
+            }
+        }
+        
+        
+        return false;
+        
+    }
+     public long pow(long a,long b,int mod){
+        
+        long val = a*1l;
+        
+        long ans = 1l;
+        
+        while(b > 0){
+            if((b&1) == 1){
+                ans = mulmod(ans,val,mod);
+            }
+            val = mulmod(val,val,mod);
+            b = b >> 1;
+        }
+        
+        return ans % mod;
+    }
+    
+    long mulmod(long a, long b,long mod)
+    {
+        return ((a%mod) * (b%mod)) % mod;
+    }
+    
+   
+    
+}
